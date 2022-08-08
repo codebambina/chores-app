@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400;500;600;700&family=Lobster&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <title>Chores</title>
+    <style>
+      body {
+        font-family: "Edu TAS Beginner", cursive;
+        text-align: center;
+        cursor: crosshair;
+      }
+      h1 {
+        font-size: 40px;
+        margin: 0;
+        padding-top: 5px;
+        padding-bottom: 0;
+      }
+      ul {
+        display: block;
+        
+      }
+      li {
+        list-style: none;
+        text-align: center;
+      }
+      .assignedChores1 {
+        padding-top: 20px;
+        font-size: 20px;
+      }
+      .assignedChores2 {
+        padding-bottom: 20px;
+        font-size: 20px;
+      }
+      .appBox {
+        width: 500px;
+        display:block;
+        font-size: 20px;
+        border: 2px solid #000;
+        border-radius: 25px;
+        background-color: rgb(148, 224, 77);
+        margin: 0 auto;
+      }
+      .description {
+        margin-bottom: 15px;
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        text-align: center;
+                font-family: 'Roboto Mono', monospace;
+        padding: 10px;
+        border: 1px solid #000;
+        border-radius: 25px;
+        background-color: #70CC40 ;
+        transition: all 200ms ease-in-out;
+      }
+      button:hover {
+        background-color: #68e1fd;
+        color: #fff;
+
+        cursor: pointer;
+      }
+      img {
+        padding-bottom: 0;
+        margin: 0;
+        display: inline;
+      
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="appBox">
+      <h1>Hello chores</h1>
+      <img src="water-plant.svg" width="180px" height="auto" />
+      
+          <div class="description">Enter two names to allocate a random chore to each person.</div>
+          <div>
+            <form><label="First name">First Name:
+          <input type="text" id="firstNameInput" placeholder="Enter a name..."></input>
+          </label>
+          </div>
+          <div>
+          <label="Second name">Second Name:
+          <input type="text" id="anotherNameInput" placeholder="Enter a name..."></input>
+          </label>
+           </form>
+          </div>
+       
+      
+      <button type="button" class="choresButton">Assign chores</button>
+
+      <div class="assignedChores1"></div>
+      <div class="assignedChores2"></div>
+    </div>
+    <div class="footer">Ⓒ codebambina</a></div>
+    <script>
+      let chores = [
+        "Water the plants",
+        "Wash the dishes",
+        "Clean the worktops",
+        "Clean the toilet",
+        "Clean the bath",
+        "Clean out the fridge",
+        "Hoover the floor",
+        "Mop the floor",
+      ];
+
+      function assignChores(chore) {
+        let firstName = document.getElementById("firstNameInput").value;
+        firstName =
+          firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+        firstName.trim();
+        let anotherName = document.getElementById("anotherNameInput").value;
+        
+
+        anotherName =
+          anotherName.charAt(0).toUpperCase() +
+          anotherName.slice(1).toLowerCase();
+        anotherName.trim();
+        if ((firstName === "") | (anotherName === "")) {
+          alert("Names cannot be blank!");
+          return false;
+        } else {
+          alert(`Okay, let's assign ${firstName} and ${anotherName} their chores!`);
+        }
+
+        let randomChore1 = chores[Math.floor(Math.random() * chores.length)];
+        let choreAssignment = document.querySelector(".assignedChores1");
+        choreAssignment.innerHTML = `<strong>${firstName}:</strong> ${randomChore1}`;
+        let randomChore2 = chores[Math.floor(Math.random() * chores.length)];
+
+        if (randomChore1 === randomChore2) {
+          let randomChore3 = chores[Math.floor(Math.random() * chores.length)];
+          let choreAssignment = document.querySelector(".assignedChores2");
+          choreAssignment.innerHTML = `<strong>${anotherName}:</strong> ${randomChore3}`;
+        } else {
+          let choreAssignment = document.querySelector(".assignedChores2");
+          choreAssignment.innerHTML = `<strong>${anotherName}:</strong> ${randomChore2}`;
+        }
+      }
+      let assignButton = document.querySelector("button");
+      assignButton.addEventListener("click", assignChores);
+    </script>
+  </body>
+</html>
